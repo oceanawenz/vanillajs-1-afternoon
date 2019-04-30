@@ -1,6 +1,6 @@
 console.log("Hello");
 
-const board = [];
+let board = [];
 function play(clickedId) {
   const clickedElement = document.getElementById(clickedId);
   const playerSpan = document.getElementById("player");
@@ -28,7 +28,8 @@ const bottomRight = [8];
 
 if (topLeft !== undefined && topLeft === topCenter && topLeft === topRight) {
   alert(`${topLeft} is the winner`);
-  return;
+  win = true;
+  reset();
 }
 if (
   middleLeft !== undefined &&
@@ -36,7 +37,8 @@ if (
   middleLeft === middleRight
 ) {
   alert(`${middleLeft} is the winner`);
-  return;
+  win = true;
+  reset();
 }
 if (
   bottomLeft !== undefined &&
@@ -44,11 +46,13 @@ if (
   bottomLeft === bottomRight
 ) {
   alert(`${bottomLeft} is the winner`);
-  return;
+  win = true;
+  reset();
 }
 if (topLeft !== undefined && topLeft === middleLeft && topLeft === bottomLeft) {
   alert(`${topLeft} is the winner`);
-  return;
+  win = true;
+  reset();
 }
 if (
   topCenter !== undefined &&
@@ -56,7 +60,8 @@ if (
   topCenter === bottomCenter
 ) {
   alert(`${topCenter} is the winner`);
-  return;
+  win = true;
+  reset();
 }
 if (
   topRight !== undefined &&
@@ -64,7 +69,8 @@ if (
   topRight === bottomRight
 ) {
   alert(`${topRight} is the winner`);
-  return;
+  win = true;
+  reset();
 }
 if (
   topLeft !== undefined &&
@@ -72,7 +78,8 @@ if (
   topLeft === bottomRight
 ) {
   alert(`${topLeft} is the winner`);
-  return;
+  win = true;
+  reset();
 }
 if (
   bottomLeft !== undefined &&
@@ -80,7 +87,27 @@ if (
   bottomLeft === topRight
 ) {
   alert(`${bottomLeft} is the winner`);
-  return;
+  win = true;
+  reset();
 }
 
- for (let i = 0; i <   )
+let boardFull = true;
+for (let i = 0; i <= 8; i++) {
+  if (board[i] === undefined) {
+    boardFull = false;
+  }
+}
+if (boardFull === true) {
+  alert("Cat's game, there is no winner");
+  win = true;
+  reset();
+}
+
+function reset() {
+  board = [];
+  console.log(board);
+  const resetTags = document.getElementsByTagName("td");
+  for (let i = 0; i < resetTags.length; i++) {
+    resetTags[i].innerText = "";
+  }
+}
